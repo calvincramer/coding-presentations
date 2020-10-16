@@ -128,13 +128,19 @@
 
 # Topics in process of creating presentation for
 
-## Presentation 1:
+## Presentation 2:
+* generators, yield, yield from
+* decorators
+
+
+
+# Topics done
+
+## Presentation 1: (Oct 16, 2020)
 * `*args` and `**kwargs`
 * defaultdict
 * comprehension -> list, dict, set comprehension
 * faster python:
 	* access global variables is SLOWER than local variables
 	* accessing functions through obj.func is slower than storing func as local variable (cost for function lookup on object)
-
-
-# Topics done
+* what's new in python 3.9

@@ -37,10 +37,32 @@ for k, v in my_dict.items():
 # TODO Use defaultdict with stating value from function
 def complex_func():
     return [1, 2, 3, 4]
+
 my_dict = defaultdict(complex_func)
 my_dict['test'].append(5)
 for k, v in my_dict.items():
     print(f'{k} -> {v}')
+
+
+# TODO Use defaultdict with starting value keeping some state
+class Foo:
+    def __init__(self):
+        self.num = 0
+
+    def default_val(self):
+        self.num += 1
+        return self.num
+
+foo_obj = Foo()
+my_dict = defaultdict(foo_obj.default_val)
+my_dict['a'] += 10
+my_dict['b'] += 10
+my_dict['c'] += 10
+for k, v in my_dict.items():
+    print(f'{k} -> {v}')
+
+
+
 
 
 
@@ -93,6 +115,9 @@ def baz(normal_arg, *args, **kwargs):
         print('found discount argument')
 
 baz('normal', 1, 2, 3, 4, discount=5, something_else='blah')
+
+
+
 
 
 # Comprehension
@@ -241,7 +266,4 @@ print(time.time() - start)
             * LL(1): always knows which choice to take, since A and B cannot have the same first tokens
     * currently there are some hacky things python does that stretch the limits of LL parsers
     * exploiting the benefits of PEG parser will be seen in python 3.10
-
-
-
 """
