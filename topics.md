@@ -1,7 +1,10 @@
 # Topics to do for Python presentations
 
 * number types -> imaginary, Decimal(), Fraction()
-* string vs. bytes
+* string types:
+	* string (unicode)
+	* bytes (ascii)
+	* r, f other prefixes for string
 * string encoding decoding
 * string formatting
 	* append

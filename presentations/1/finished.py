@@ -16,7 +16,7 @@ print('Original:')
 for k, v in my_dict.items():
     print(f'{k} -> {v}')
 
-# TODO Use defaultdict to replace above 
+# TODO Use defaultdict to replace above
 from collections import defaultdict
 
 my_dict = defaultdict(int)
@@ -199,3 +199,49 @@ def expensive4(n):
 start = time.time()
 expensive4(50_000_000)
 print(time.time() - start)
+
+
+
+
+
+
+
+# EXTRA
+# Python 3.9 features
+"""
+1. special dictionary syntax for merging and updating
+    dict_a | dict_b  (merge),  dict_a |= dict_b (update)
+
+2. string functions to remove prefixes and suffixes
+
+3. type hinting no longer needs special types from the typing module
+    * previously
+        from typing import List
+        def foo(a: List[int]) -> List[float]:
+            pass
+
+    * python 3.9:
+        def foo(a: list[int]) -> list[float]:
+            pass
+
+4. PEG parser rather than LL(1) parser (Cpython specific)
+    * LL(1) parser is top-down left to right parser, one-token of lookahead
+        * "Left-to-right, leftmost derivation"
+        * doesn't allow for two rules to start with the same token:
+            * rule1: token1 token2
+            * rule2: token1 token3
+        * doesn't allow for left recursive rules
+            * rule: rule token
+    * PEG (Parsing Expression Grammar)
+        * main difference with LL(1)
+        * different than context-free grammar
+        * usually implemented as recursive descent parser
+        * rule: A | B
+            * PEG: try to run with A first, if it fails, try B (order of A and B matters now)
+            * LL(1): always knows which choice to take, since A and B cannot have the same first tokens
+    * currently there are some hacky things python does that stretch the limits of LL parsers
+    * exploiting the benefits of PEG parser will be seen in python 3.10
+
+
+
+"""
