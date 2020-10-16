@@ -1,7 +1,5 @@
 # Coding Presentations
 
-## Overview
-
 This repo holds a list of topics, and materials for presentations about programming.
 
 ## Presentations Done
