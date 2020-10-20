@@ -1,4 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
+import time
+import math
+from typing import List, Dict, Optional
+print()
 
 # TODO Simple class public attributes
 class Foo:
@@ -84,7 +88,10 @@ class Abstract_Faker_Concrete(Abstract_Faker):
         print('abstract_raise work')
     def abstract_warning(self):
         print('abstract_warning work')
-# TODO explain using fake abstract class OK as long as all abstract methods overridden, but error prone.
+
+# TODO is it smart to do it this way?: 
+# using fake abstract class OK as long as all abstract methods overridden, but error prone.
+
 # TODO use concrete class
 abstract_faker_concrete_obj = Abstract_Faker_Concrete(404)
 abstract_faker_concrete_obj.abstract_1()
@@ -97,48 +104,283 @@ abstract_faker_concrete_obj.abstract_warning()
 # TODO Abstract class with ABC
 from abc import ABC, abstractmethod
 class Bar(ABC):
-    def __init__(self, name):
-        self.__name = name
-    def __str__(self):
-        return self.__name + "\t" + self.speak()
+    # 1. TODO default abstract instance method
     @abstractmethod
     def speak(self) -> str:
         ...
-    # TODO MORE METHODS FROM ABC like staticmethod, classmethod, property
 
-    
+    # 2. TODO default abstract instance method WITH an implementation
+    @abstractmethod
+    def convert(self, num: int) -> int:
+        return num // 10
 
-# TODO try to to instantiate abstract class
-try:
-    bar_obj = Bar('should not work')        # Can't instantiate
-    print(bar_obj)
-except TypeError as e:
-    print(e)
+    # 3. TODO abstract class method (useful for Factory patterns)
+    @classmethod
+    @abstractmethod
+    def factory(cls, num):
+        ...
+
+    # 4. TODO abstract static method (useful for simple utility functions)
+    @staticmethod
+    @abstractmethod
+    def run(input: int) -> int:
+        ...
+
+    # 5. TODO abstract property (getter)
+    @property
+    @abstractmethod
+    def num_legs(self):
+        ...
+
+    # 6. TODO abstract property setter
+    @num_legs.setter
+    @abstractmethod
+    def num_legs(self, value):
+        ...
+
+
 # TODO extend abstract class with concrete class
 class Bar_Concrete(Bar):
     # TODO first try to not override abstract method, see that it enforces 
     # pass
-    # TODO provide implementation
+
+    # 1. TODO implement default abstract instance method
     def speak(self) -> str:
         return 'I am concrete'
 
-bar_conc_obj = Bar_Concrete('concrete')
-print(bar_conc_obj)
+    # 2. TODO implement default abstract instance method WITH an implementation
+    def convert(self, num: int) -> int:
+        if num < 0:
+            # Special case, use super implementation
+            return super().convert(num)
+        return int(''.join(str(d) for i, d in enumerate(str(num)) if i % 2 == 0))
+
+    # 3. TODO implement abstract class method
+    @classmethod
+    def factory(cls, num):
+        obj = cls()
+        obj.value = num
+        return obj
+
+    # 4. TODO implement abstract static method
+    @staticmethod
+    def run(ms: int) -> int:
+        seconds = ms / 1_000
+        print(f'Running for {seconds:.2f} seconds')
+        time.sleep(seconds)
+
+    # 5. TODO implement abstract properties
+    @property
+    def num_legs(self):
+        if not hasattr(self, '_num_legs'):
+            self._num_legs = 1_000
+        return self._num_legs  # I'm a millipede
+    
+    # 6. TODO abstract property setter
+    @num_legs.setter
+    def num_legs(self, value):
+        if value < 1_000:
+            print('Warning, I am supposed to be a millipede, I need more legs!')
+        self._num_legs = value     # Doesn't cause infinite recursion
+        
+
+# TODO try to to instantiate abstract class
+try:
+    bar_obj = Bar()        # Can't instantiate
+except TypeError as e:
+    print(e)    
+
+bar_conc_obj = Bar_Concrete()
+print(f'speak(): {bar_conc_obj.speak()}')
+print(f'convert(): {bar_conc_obj.convert(123456789)}')
+print(f'convert(): {bar_conc_obj.convert(-100)}')
+new_obj = bar_conc_obj.factory(1234)
+print(f'value= {new_obj.value}')
+bar_conc_obj.run(1_500)
+
+print(f'num legs: {bar_conc_obj.num_legs}')
+bar_conc_obj.num_legs = 900
+print(f'num legs: {bar_conc_obj.num_legs}')
 
 
 
 
 # TODO Multiple inheritance
+class Base1:
+    def f1(self):
+        return 'Base1 f1'
+    def f_base1(self):
+        return 'Base1 f_base1'
+
+class Base2:
+    def f1(self):
+        return 'Base2 f1'
+    def f_base2(self):
+        return 'Base2 f_base2'
+
+class Child(Base1, Base2):
+    def call_test(self):
+        print('Call test')
+        print(super().f1())
+        print(super().f_base1())
+        print(super().f_base2())
+        # Call specific parents
+        print(Base1.f1(self))
+        print(Base2.f1(self))
 
 
-# TODO Multiple inheritance conflicts and __mro__
+# TODO Show multiple inheritance conflicts
+child = Child()
+print(f'f1 -> {child.f1()}')
+print(f'f_base1 -> {child.f_base1()}')
+print(f'f_base2 -> {child.f_base2()}')
+child.call_test()
+
+# TODO Swap order of multiple inheritance to change MRO
+
+# TODO show __mro__
+print(Child.__mro__)
+print(Child.mro())
+
+# TODO explain: MRO maintains that parents always come before children
+
+
+
+
 
 
 
 # TODO Interfaces through stateless ABC and multiple inheritance
+class HasArea(ABC):
+    @property
+    @abstractmethod
+    def area(self) -> float:
+        ...
+
+class Drawable(ABC):
+    @abstractmethod
+    def draw(self):
+        ...
+
+class Shape:
+    # More stuff here
+    ...
+
+class Square(Shape, HasArea, Drawable):
+    def __init__(self, length):
+        self._side_length = length
+    @property
+    def area(self) -> float:
+        return self._side_length ** 2
+
+    def draw(self):
+        print()
+        for _ in range(self._side_length):
+            print('.' * self._side_length)
+        print()
+
+class Triangle(Shape, HasArea, Drawable):
+    def __init__(self, base, height):
+        self._base = base
+        self._height = height
+    @property
+    def area(self) -> float:
+        return self._base * self._height / 2.0
+
+    def draw(self):
+        for row in range(1, self._height + 1):
+            tri_chars = int(float(row) / self._height * self._base)
+            tri_chars = '.' * tri_chars
+            prepend_chars = ' ' * ((self._base - len(tri_chars)) // 2)
+            print(prepend_chars + tri_chars)
 
 
+sq = Square(5)
+print(f'area square: {sq.area}')
+sq.draw()
+
+tri = Triangle(11, 6)
+print(f'area triangle: {tri.area}')
+tri.draw()
 
 
 # TODO dataclass
+class Big:
+    def __init__(self, a: int, b: str, c: List[str], d: Dict[int, str], e: float, f: Optional[str], g: int, h: int = 0, i: int = 1, j: int = 2):
+        self._a = a
+        self._b = b
+        self._c = c
+        self._d = d
+        self._e = e
+        self._f = f
+        self._g = g
+        self._h = h
+        self._i = i
+        self._j = j
+
+    def do_something(self):
+        print(self.__dict__)
+
+
+big = Big(1, 'asdf', [1, 2, 3, 4], {1: 'one'}, 3.1415, None, 2)
+big.do_something()
+
+from dataclasses import dataclass, field
+
+def make():
+    return ['asdf', 1234, 'blah blah']
+
+@dataclass
+class BigSmart:
+    a: int
+    b: str
+    c: List[str]
+    d: Dict[int, str]
+    e: float
+    f: Optional[str]
+    g: int
+    h: int = 0
+    i: int = 0
+    j: int = 0
+    complex_var: List = field(default_factory=make)
+
+    def __post_init__(self):
+        self._blah = self.a + self.e
+
+    def do_something(self):
+        print(self.__dict__)
+
+big_smart = BigSmart(1, 'asdf', [1, 2, 3, 4], {1: 'one'}, 3.1415, None, 2)
+big_smart.do_something()
+# TODO remember, type is not enforced
+
+
+
+
 # TODO immutable dataclass
+@dataclass(frozen=True)
+class BankAccount:
+    money: int
+
+account = BankAccount(100)
+print(f'I have {account.money} dollars')
+try:
+    account.money = 1_000_000
+except Exception as e:
+    print(e)
+print(f'Now I have {account.money} dollars')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print()

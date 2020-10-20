@@ -15,6 +15,8 @@
 	* format
 	* f-strings
 
+* '...' dot dot dot syntax
+
 * functional programming
 	* `lambda` functions
 	* list, map, filter, accumulate, chain, reverse, sort, sorted, reduce
@@ -25,6 +27,7 @@
 		* `from functools import partial`
 	* currying -> `f(1)(2)(3)`
 
+* walrus operator
 
 
 * Counter()
