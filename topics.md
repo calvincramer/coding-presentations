@@ -1,16 +1,20 @@
 # Topics to do for Python presentations
 
 * number types -> imaginary, Decimal(), Fraction()
+
 * string types:
 	* string (unicode)
 	* bytes (ascii)
 	* r, f other prefixes for string
+
 * string encoding decoding
+
 * string formatting
 	* append
 	* %
 	* format
 	* f-strings
+
 * functional programming
 	* `lambda` functions
 	* list, map, filter, accumulate, chain, reverse, sort, sorted, reduce
@@ -35,26 +39,12 @@
 	* eq, ge, lt
 	* getattribute, setattr, getattr
 * logging
-* generators
-* decorators
-	* manually
-	* simple
-	* with decorator arguments
-	* with function arguments
-	* decorators as Classes (have internal state)
-	* decorators as cache / memoization
 * context managers
 * coroutines
 * python project management
 	* `__init__.py`
 	* requirements.txt
-* OOP stuff (kind of)
-	* private attributes, hidden attributes, name mangling
-	* Abstract classes `from abc import ABC, abstractmethod`
-	* multiple inheritance and name conflicts, `__mro__`
-	* interfaces through stateless abstract base classes and multiple inheritance
-	* data class -> easier init functions (kind of like namedtuple)
-		* immutable data class
+
 * python 2 to 3 conversion
 * testing
 	* unittest
@@ -74,9 +64,9 @@
 	* textwrap
 	* html.parser
 	* json
+	* itertools.permutations
 * useful libraries:
 	* requests
-	* itertools.permutations
 	* tkinter
 	* numpy
 	* simpleaudio
@@ -129,8 +119,25 @@
 # Topics in process of creating presentation for
 
 ## Presentation 2:
-* generators, yield, yield from
+* OOP stuff (kind of)
+	* private attributes, hidden attributes, name mangling
+	* Abstract classes `from abc import ABC, abstractmethod`
+	* multiple inheritance and name conflicts, `__mro__`
+	* interfaces through stateless abstract base classes and multiple inheritance
+	* data class -> easier init functions (kind of like namedtuple)
+		* immutable data class
+* generators,
+	* generator expressions
+	* generator functions with yield
+		* recursive generators with yield from
+	* speed / size comparison
 * decorators
+	* manually
+	* simple
+	* with decorator arguments
+	* with function arguments
+	* decorators as Classes (have internal state)
+	* decorators as cache / memoization
 
 
 
