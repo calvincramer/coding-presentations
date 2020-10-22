@@ -29,6 +29,16 @@
 
 * walrus operator
 
+* variable scope differences
+	* can access variable outside of an if, for, while, try
+	* can't access outside of a function
+	* as opposed to curly braces languages that don't allow this
+	* use `del` to delete variables
+
+* `del` syntax
+	* use to delete variables
+	* delete items in list, dictionary?
+	* what else?
 
 * Counter()
 * OrderedDict()

@@ -241,10 +241,16 @@ def menu():
     top_level_menu = {}
     option1_menu = {}
     option2_menu = {}
+    current_menu = top_level_menu
 
     def quit_func():
         print('Quitting!')
         exit()
+
+    def print_current_menu():
+        for k, v in current_menu.items():
+            print(f'{v[0]}: [{k}]')
+        print()
 
     top_level_menu['1'] = ['option1', option1_menu]
     top_level_menu['2'] = ['option2', option2_menu]
@@ -254,23 +260,10 @@ def menu():
     option2_menu['s'] = ['say something', lambda: print('Saying something else')]
     option2_menu['b'] = ['back', top_level_menu]
 
-
-    current_menu = top_level_menu
-
-    def print_current_menu():
-        for k, v in current_menu.items():
-            print(f'{v[0]}: [{k}]')
-        print()
-
     while True:
         print_current_menu()
         print('input>> ', end='')
         inp = yield
-        # print(inp, end='')
-        # sys.stdout.flush()
-        # time.sleep(1)
-        # print('\n')
-
         if inp not in current_menu:
             print('Bad selection, try again.')
             continue
@@ -281,7 +274,6 @@ def menu():
         else:
             thing()
             print()
-
 
 menu_gen = menu()
 next(menu_gen)
