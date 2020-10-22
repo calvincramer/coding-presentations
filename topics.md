@@ -129,9 +129,19 @@
 
 
 
-# Topics in process of creating presentation for
+# Topics in process of creating presentation for:
 
-## Presentation 2:
+## Presentation 3:
+* decorators
+	* manually
+	* simple
+	* with decorator arguments
+	* with function arguments
+	* decorators as Classes (have internal state)
+	* decorators as cache / memoization
+
+
+## Presentation 2: (planned Oct 30th, 2020)
 * OOP stuff (kind of)
 	* private attributes, hidden attributes, name mangling
 	* Abstract classes `from abc import ABC, abstractmethod`
@@ -144,13 +154,6 @@
 	* generator functions with yield
 		* recursive generators with yield from
 	* speed / size comparison
-* decorators
-	* manually
-	* simple
-	* with decorator arguments
-	* with function arguments
-	* decorators as Classes (have internal state)
-	* decorators as cache / memoization
 
 
 

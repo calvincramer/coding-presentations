@@ -4,14 +4,14 @@ This repo holds a list of topics, and materials for presentations about programm
 
 ## Presentations Done
 
-1. Python Tips (October 16th, 2020)
+1. Presentation 1 (October 16th, 2020)
 	* `*args`, `**kwargs`
 	* defaultdict
 	* comprehension
 	* speed up python
 	* What's new in Python 3.9
 
-2. ? (Planned October 30th, 2020)
+2. Presentation 2 (Planned October 30th, 2020)
 	* OOP stuff (kind of)
 		* private attributes, hidden attributes, name mangling
 		* Abstract classes `from abc import ABC, abstractmethod`
@@ -24,6 +24,8 @@ This repo holds a list of topics, and materials for presentations about programm
 		* generator functions with yield
 			* recursive generators with yield from
 		* speed / size comparison
+
+3. Presentation 3 (Planned ?)
 	* decorators
 		* manually
 		* simple
