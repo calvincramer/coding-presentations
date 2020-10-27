@@ -118,6 +118,10 @@
 		* cpu bound
 			* ProcessPoolExecutor
 		* asyncio
+		* multi thread
+		* multi processor?
+		* multi python interpreters?
+		* GIL problem
 	* numpy
 	* numba
 	* cython

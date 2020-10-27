@@ -4,6 +4,9 @@ from typing import Iterator, Generator, Optional
 print()
 
 
+
+
+
 def generate_new_element(n: int) -> int:
     print(f'Generating a new number based on {n}')
     time.sleep(1 / 10)
@@ -22,6 +25,7 @@ for elm in my_list:
 
 
 
+
 # TODO generator function
 def gen_func(num: int) -> Iterator[int]:
     while num > 0:
@@ -33,6 +37,8 @@ def gen_func(num: int) -> Iterator[int]:
 for n in gen_func(2**8):
     print(f'Got {n}')
     time.sleep(1/10)
+
+
 
 
 
@@ -48,6 +54,8 @@ while True:
         break
     res.append( (obj, obj_next) )
 print(res)
+
+
 
 
 
@@ -87,6 +95,8 @@ for value in infix_gen(root):
 
 
 
+
+
 # TODO speed / size comparison
 import os
 import gc
@@ -94,14 +104,13 @@ import psutil
 import random
 def get_mem_bytes() -> int:
     return psutil.Process(os.getpid()).memory_info().rss
-
 SIZE = 1_000_000
 
 # TODO list
 gc.collect()
 start_time_list = time.time()
 start_mem_list = get_mem_bytes()
-my_list = [n for n in range(1_000_000)]
+my_list = [n for n in range(SIZE)]
 sum_list = 0
 for n in my_list:
     sum_list += n
@@ -111,14 +120,13 @@ print('List:')
 print(f'Mem: {end_mem_list - start_mem_list}')
 print(f'Sum: {sum_list}')
 print(f'Time: {end_time_list - start_time_list}')
-
 print()
 
 # TODO generator
 gc.collect()
 start_time_gen = time.time()
 start_mem_gen = get_mem_bytes()
-my_gen = (n for n in range(1_000_000))
+my_gen = (n for n in range(SIZE))
 sum_gen = 0
 for n in my_gen:
     sum_gen += n
@@ -141,6 +149,8 @@ for i in range(100_000):
 
 
 
+
+
 # TODO generator makes infinite sequence generation simple
 def fib() -> Iterator[int]:
     num_1 = 0
@@ -157,6 +167,8 @@ for n in fib():
         break
 
 
+
+
 # TODO generator as a class by overriding some dunder functions
 class GenClass:
     def __init__(self):
@@ -165,19 +177,21 @@ class GenClass:
     def __iter__(self):
         return self
 
+    # TODO explain general iterator syntax
     def __next__(self):
         self.n += 1
         if self.n % 2 == 0:
-            return self.n
+            return self.n, 'even!'
         else:
             return self.n, 'odd!'
-
 
 obj = GenClass()
 for value in obj:
     print(value)
-    if type(value) is int and value > 100:
+    if value[0] > 100:
         break
+
+
 
 
 
@@ -199,13 +213,15 @@ def stat_collector():
             _max = value
         print(f'sum: {_sum}, min: {_min}, max: {_max}, avg: {_avg:.2f}, count: {_count}')
 
-
 stat_collector_gen = stat_collector()
 next(stat_collector_gen)    # Need to 'prime' the generator
 stat_collector_gen.send(5)
 stat_collector_gen.send(10)
 stat_collector_gen.send(-5)
 stat_collector_gen.send(50)
+
+
+
 
 
 # TODO sending values back AND forth
@@ -231,6 +247,8 @@ print(stat_collector_gen.send(5))
 print(stat_collector_gen.send(10))
 print(stat_collector_gen.send(-5))
 print(stat_collector_gen.send(50))
+# TODO explain value is send in, generator runs until yield, yeilds values, then waits
+
 
 
 
@@ -238,20 +256,22 @@ print(stat_collector_gen.send(50))
 # TODO make CLI menu
 import sys
 def menu():
+    # Menus
     top_level_menu = {}
     option1_menu = {}
     option2_menu = {}
-    current_menu = top_level_menu
 
+    current_menu = top_level_menu
+    # Inner funcs
     def quit_func():
         print('Quitting!')
         exit()
-
     def print_current_menu():
+        print('#' * 32)
         for k, v in current_menu.items():
             print(f'{v[0]}: [{k}]')
         print()
-
+    # Add options
     top_level_menu['1'] = ['option1', option1_menu]
     top_level_menu['2'] = ['option2', option2_menu]
     top_level_menu['q'] = ['quit', quit_func]

@@ -4,50 +4,39 @@ import math
 from typing import List, Dict, Optional
 print()
 
-# TODO Simple class public attributes
+
+# TODO Public, private, hidden
 class Foo:
-    def __init__(self, num: int):
-        self.num = num
-    def get_num(self) -> int:
-        return self.num
+    def __init__(self, pub: int, private: int, hidden: int):
+        # TODO public attribute
+        self.pub = pub  
+        # TODO private attribute
+        self._pri = private
+        # TODO hidden attribute
+        self.__hidden = hidden
 
-# TODO Use simple class
-foo_obj = Foo(5)
-print(foo_obj.get_num())
-print(foo_obj.num)
+    def get_public(self) -> int:
+        return self.pub
+    def get_private(self) -> int:
+        return self._pri
+    def get_hidden(self) -> int:
+        return self.__hidden
 
+# TODO Access attributes
+foo_obj = Foo(5, 10, 15)
 
+print(f'public: {foo_obj.get_public()}')
+print(f'public: {foo_obj.pub}')
 
-# TODO Private attribute class
-class FooPrivate:
-    def __init__(self, num: int):
-        self._num = num             # By convention, no protection (other than static checkers)
-    def get_num(self) -> int:
-        return self._num
+print(f'private: {foo_obj.get_private()}')
+print(f'private: {foo_obj._pri}')
 
-# TODO Use private attribute class
-foo_p_obj = FooPrivate(10)
-print(foo_p_obj.get_num())
-print(foo_p_obj._num)
-
-
-
-# TODO Hidden attribute class
-class FooHidden:
-    def __init__(self, num: int):
-        self.__num = num             # By convention, no protection (other than static checkers)
-    def get_num(self) -> int:
-        return self.__num
-
-
-# TODO Use hidden attribute class
-foo_h_obj = FooHidden(15)
-print(foo_h_obj.get_num())
+print(f'hidden: {foo_obj.get_hidden()}')
 try:
-    print(foo_h_obj.__num)          # Protection!
+    print(f'hidden: {foo_obj.__hidden}')          # Protection!
 except AttributeError as e:
-    print(e)
-print(foo_h_obj._FooHidden__num)    # But still accessible through mangled name
+    print(f'ERROR: {e}')
+print(f'hidden: {foo_obj._Foo__hidden}')    # But still accessible through mangled name
 
 
 
@@ -101,6 +90,7 @@ abstract_faker_concrete_obj.abstract_warning()
 
 
 
+
 # TODO Abstract class with ABC
 from abc import ABC, abstractmethod
 class Bar(ABC):
@@ -108,36 +98,30 @@ class Bar(ABC):
     @abstractmethod
     def speak(self) -> str:
         ...
-
     # 2. TODO default abstract instance method WITH an implementation
     @abstractmethod
     def convert(self, num: int) -> int:
         return num // 10
-
     # 3. TODO abstract class method (useful for Factory patterns)
     @classmethod
     @abstractmethod
     def factory(cls, num):
         ...
-
     # 4. TODO abstract static method (useful for simple utility functions)
     @staticmethod
     @abstractmethod
     def run(input: int) -> int:
         ...
-
     # 5. TODO abstract property (getter)
     @property
     @abstractmethod
     def num_legs(self):
         ...
-
     # 6. TODO abstract property setter
     @num_legs.setter
     @abstractmethod
     def num_legs(self, value):
         ...
-
 
 # TODO extend abstract class with concrete class
 class Bar_Concrete(Bar):
@@ -147,35 +131,30 @@ class Bar_Concrete(Bar):
     # 1. TODO implement default abstract instance method
     def speak(self) -> str:
         return 'I am concrete'
-
     # 2. TODO implement default abstract instance method WITH an implementation
     def convert(self, num: int) -> int:
         if num < 0:
             # Special case, use super implementation
             return super().convert(num)
         return int(''.join(str(d) for i, d in enumerate(str(num)) if i % 2 == 0))
-
     # 3. TODO implement abstract class method
     @classmethod
     def factory(cls, num):
         obj = cls()
         obj.value = num
         return obj
-
     # 4. TODO implement abstract static method
     @staticmethod
     def run(ms: int) -> int:
         seconds = ms / 1_000
         print(f'Running for {seconds:.2f} seconds')
         time.sleep(seconds)
-
     # 5. TODO implement abstract properties
     @property
     def num_legs(self):
         if not hasattr(self, '_num_legs'):
             self._num_legs = 1_000
         return self._num_legs  # I'm a millipede
-    
     # 6. TODO abstract property setter
     @num_legs.setter
     def num_legs(self, value):
@@ -183,7 +162,6 @@ class Bar_Concrete(Bar):
             print('Warning, I am supposed to be a millipede, I need more legs!')
         self._num_legs = value     # Doesn't cause infinite recursion
         
-
 # TODO try to to instantiate abstract class
 try:
     bar_obj = Bar()        # Can't instantiate
@@ -201,6 +179,10 @@ bar_conc_obj.run(1_500)
 print(f'num legs: {bar_conc_obj.num_legs}')
 bar_conc_obj.num_legs = 900
 print(f'num legs: {bar_conc_obj.num_legs}')
+
+
+
+
 
 
 
@@ -235,13 +217,12 @@ print(f'f1 -> {child.f1()}')
 print(f'f_base1 -> {child.f_base1()}')
 print(f'f_base2 -> {child.f_base2()}')
 child.call_test()
-
 # TODO Swap order of multiple inheritance to change MRO
+
 
 # TODO show __mro__
 print(Child.__mro__)
 print(Child.mro())
-
 # TODO explain: MRO maintains that parents always come before children
 
 
@@ -304,7 +285,12 @@ print(f'area triangle: {tri.area}')
 tri.draw()
 
 
+
+
+
+
 # TODO dataclass
+# TODO normal way
 class Big:
     def __init__(self, a: int, b: str, c: List[str], d: Dict[int, str], e: float, f: Optional[str], g: int, h: int = 0, i: int = 1, j: int = 2):
         self._a = a
@@ -325,6 +311,7 @@ class Big:
 big = Big(1, 'asdf', [1, 2, 3, 4], {1: 'one'}, 3.1415, None, 2)
 big.do_something()
 
+# TODO dataclass way
 from dataclasses import dataclass, field
 
 def make():
@@ -353,6 +340,7 @@ class BigSmart:
 big_smart = BigSmart(1, 'asdf', [1, 2, 3, 4], {1: 'one'}, 3.1415, None, 2)
 big_smart.do_something()
 # TODO remember, type is not enforced
+
 
 
 
