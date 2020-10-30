@@ -9,8 +9,9 @@ print()
 class Foo:
     def __init__(self, pub: int, private: int, hidden: int):
         # TODO public attribute
-        self.pub = pub  
+        self.pub = pub
         # TODO private attribute
+############################################# ASK WHO KNOWS HOW TO DO PRIVATE VARIABES #############################################
         self._pri = private
         # TODO hidden attribute
         self.__hidden = hidden
@@ -32,6 +33,7 @@ print(f'private: {foo_obj.get_private()}')
 print(f'private: {foo_obj._pri}')
 
 print(f'hidden: {foo_obj.get_hidden()}')
+############################################# ASK WHAT DO YOU THINK WILL HAPPEN #############################################
 try:
     print(f'hidden: {foo_obj.__hidden}')          # Protection!
 except AttributeError as e:
@@ -43,12 +45,13 @@ print(f'hidden: {foo_obj._Foo__hidden}')    # But still accessible through mangl
 
 
 # TODO Abstract class with pass or raise NotImplementedError
+############################################# ASK WHAT IS AN ABSTRACT CLASS #############################################
 class Abstract_Faker:
     def __init__(self, state):
         self.state = state
     def __str__(self):
         return str(self.state)
-    
+
     def abstract_1(self):
         # The "do nothing" silent error waiting to happen
         pass
@@ -78,7 +81,7 @@ class Abstract_Faker_Concrete(Abstract_Faker):
     def abstract_warning(self):
         print('abstract_warning work')
 
-# TODO is it smart to do it this way?: 
+# TODO is it smart to do it this way?:
 # using fake abstract class OK as long as all abstract methods overridden, but error prone.
 
 # TODO use concrete class
@@ -125,7 +128,8 @@ class Bar(ABC):
 
 # TODO extend abstract class with concrete class
 class Bar_Concrete(Bar):
-    # TODO first try to not override abstract method, see that it enforces 
+    # TODO first try to not override abstract method, see that it enforces
+############################################# ASK WHAT DO YOU THINK WILL HAPPEN #############################################
     # pass
 
     # 1. TODO implement default abstract instance method
@@ -161,12 +165,12 @@ class Bar_Concrete(Bar):
         if value < 1_000:
             print('Warning, I am supposed to be a millipede, I need more legs!')
         self._num_legs = value     # Doesn't cause infinite recursion
-        
+
 # TODO try to to instantiate abstract class
 try:
     bar_obj = Bar()        # Can't instantiate
 except TypeError as e:
-    print(e)    
+    print(e)
 
 bar_conc_obj = Bar_Concrete()
 print(f'speak(): {bar_conc_obj.speak()}')
@@ -201,6 +205,7 @@ class Base2:
         return 'Base2 f_base2'
 
 class Child(Base1, Base2):
+    # TODO: Add this after
     def call_test(self):
         print('Call test')
         print(super().f1())
@@ -232,6 +237,7 @@ print(Child.mro())
 
 
 # TODO Interfaces through stateless ABC and multiple inheritance
+############################################# ASK WHAT IS AN INTERFACE #############################################
 class HasArea(ABC):
     @property
     @abstractmethod
@@ -272,6 +278,7 @@ class Triangle(Shape, HasArea, Drawable):
         for row in range(1, self._height + 1):
             tri_chars = int(float(row) / self._height * self._base)
             tri_chars = '.' * tri_chars
+############################################# ASK WHAT IS THE AREA OF A TRIANGLE #############################################
             prepend_chars = ' ' * ((self._base - len(tri_chars)) // 2)
             print(prepend_chars + tri_chars)
 

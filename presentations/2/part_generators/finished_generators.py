@@ -13,11 +13,13 @@ def generate_new_element(n: int) -> int:
     return n * 2
 
 # TODO generator expression
+############################################# ASK WHO CAN MAKE A GENERATOR EXPRESSION #############################################
 gen = (generate_new_element(n) for n in range(5))
 for elm in gen:
     print(elm)
 
 # TODO same but use list
+############################################# ASK HOW TO MAKE IT INTO A LIST COMPREHENSION #############################################
 my_list = [generate_new_element(n) for n in range(5)]
 for elm in my_list:
     print(elm)
@@ -37,7 +39,7 @@ def gen_func(num: int) -> Iterator[int]:
 for n in gen_func(2**8):
     print(f'Got {n}')
     time.sleep(1/10)
-
+############################################# ASK UNDERSTANDING #############################################
 
 
 
@@ -75,13 +77,14 @@ root.r.r = BTN(25)
 
 """
          10
-      5      20 
+      5      20
      3 7   15  25
 """
 
 def infix_gen(node: Optional[BTN]):
     if node is None:
         return
+############################################# ASK HOW TO DO INFIX TRAVERSAL #############################################
     # Left
     yield from infix_gen(node.l)
     # Visit
@@ -137,6 +140,7 @@ print(f'Mem: {end_mem_gen - start_mem_gen}')
 print(f'Sum: {sum_gen}')
 print(f'Time: {end_time_gen - start_time_gen}')
 
+
 # TODO exploration of when more memory requested
 arr = []
 last_mem = get_mem_bytes()
@@ -152,6 +156,7 @@ for i in range(100_000):
 
 
 # TODO generator makes infinite sequence generation simple
+############################################# ASK FOR AN INFINITE SEQUENCE #############################################
 def fib() -> Iterator[int]:
     num_1 = 0
     yield num_1
@@ -173,7 +178,7 @@ for n in fib():
 class GenClass:
     def __init__(self):
         self.n = 0
-    
+
     def __iter__(self):
         return self
 

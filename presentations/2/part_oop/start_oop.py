@@ -13,6 +13,15 @@ print()
 
 
 
+
+
+
+
+
+
+
+
+
 # TODO Abstract class with pass or raise NotImplementedError
 
 # TODO instantiate "abstract" class
@@ -27,11 +36,22 @@ print()
 
 
 
+
+
+
+
+
+
 # TODO Abstract class with ABC
 
 # TODO extend abstract class with concrete class
         
 # TODO try to to instantiate abstract class
+
+
+
+
+
 
 
 
@@ -56,7 +76,14 @@ print()
 
 
 
+
+
+
 # TODO Interfaces through stateless ABC and multiple inheritance
+
+
+
+
 
 
 
@@ -68,6 +95,10 @@ print()
 # TODO dataclass way
 
 # TODO remember, type is not enforced
+
+
+
+
 
 
 
