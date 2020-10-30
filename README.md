@@ -19,13 +19,13 @@ This repo holds a list of topics, and materials for presentations about programm
 		* interfaces through stateless abstract base classes and multiple inheritance
 		* data class -> easier init functions (kind of like namedtuple)
 			* immutable data class
+
+3. Presentation 3 (Planned ?)
 	* generators,
 		* generator expressions
 		* generator functions with yield
 			* recursive generators with yield from
 		* speed / size comparison
-
-3. Presentation 3 (Planned ?)
 	* decorators
 		* manually
 		* simple

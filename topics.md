@@ -136,6 +136,13 @@
 # Topics in process of creating presentation for:
 
 ## Presentation 3:
+* generators,
+	* generator expressions
+	* generator functions with yield
+		* recursive generators with yield from
+	* speed / size comparison
+
+
 * decorators
 	* manually
 	* simple
@@ -153,12 +160,6 @@
 	* interfaces through stateless abstract base classes and multiple inheritance
 	* data class -> easier init functions (kind of like namedtuple)
 		* immutable data class
-* generators,
-	* generator expressions
-	* generator functions with yield
-		* recursive generators with yield from
-	* speed / size comparison
-
 
 
 # Topics done
