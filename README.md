@@ -21,7 +21,7 @@ This repo holds a list of topics, and materials for presentations about programm
 			* immutable data class
 
 3. Presentation 3 (Planned ?)
-	* generators,
+	* generators
 		* generator expressions
 		* generator functions with yield
 			* recursive generators with yield from

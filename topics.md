@@ -136,13 +136,11 @@
 # Topics in process of creating presentation for:
 
 ## Presentation 3:
-* generators,
+* generators
 	* generator expressions
 	* generator functions with yield
 		* recursive generators with yield from
 	* speed / size comparison
-
-
 * decorators
 	* manually
 	* simple
@@ -150,16 +148,6 @@
 	* with function arguments
 	* decorators as Classes (have internal state)
 	* decorators as cache / memoization
-
-
-## Presentation 2: (planned Oct 30th, 2020)
-* OOP stuff (kind of)
-	* private attributes, hidden attributes, name mangling
-	* Abstract classes `from abc import ABC, abstractmethod`
-	* multiple inheritance and name conflicts, `__mro__`
-	* interfaces through stateless abstract base classes and multiple inheritance
-	* data class -> easier init functions (kind of like namedtuple)
-		* immutable data class
 
 
 # Topics done
@@ -172,3 +160,12 @@
 	* access global variables is SLOWER than local variables
 	* accessing functions through obj.func is slower than storing func as local variable (cost for function lookup on object)
 * what's new in python 3.9
+
+## Presentation 2: (planned Oct 30th, 2020)
+* OOP stuff (kind of)
+	* private attributes, hidden attributes, name mangling
+	* Abstract classes `from abc import ABC, abstractmethod`
+	* multiple inheritance and name conflicts, `__mro__`
+	* interfaces through stateless abstract base classes and multiple inheritance
+	* data class -> easier init functions (kind of like namedtuple)
+		* immutable data class
