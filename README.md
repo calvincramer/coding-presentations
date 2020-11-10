@@ -2,16 +2,18 @@
 
 This repo holds a list of topics, and materials for presentations about programming.
 
-## Presentations Done
+# Presentations
 
-1. Presentation 1 (October 16th, 2020)
+## Done
+
+1. Presentation 1 (2020-10-16)
 	* `*args`, `**kwargs`
 	* defaultdict
 	* comprehension
 	* speed up python
 	* What's new in Python 3.9
 
-2. Presentation 2 (Planned October 30th, 2020)
+2. Presentation 2 (2020-10-30)
 	* OOP stuff (kind of)
 		* private attributes, hidden attributes, name mangling
 		* Abstract classes `from abc import ABC, abstractmethod`
@@ -20,12 +22,11 @@ This repo holds a list of topics, and materials for presentations about programm
 		* data class -> easier init functions (kind of like namedtuple)
 			* immutable data class
 
-3. Presentation 3 (Planned ?)
-	* generators
-		* generator expressions
-		* generator functions with yield
-			* recursive generators with yield from
-		* speed / size comparison
+## Planned
+
+3. Presentation 3 (Planned 2020-11-13)
+	* printing stuff
+		* %, string append, format, f-string
 	* decorators
 		* manually
 		* simple
@@ -33,3 +34,11 @@ This repo holds a list of topics, and materials for presentations about programm
 		* with function arguments
 		* decorators as Classes (have internal state)
 		* decorators as cache / memoization
+
+
+4. Presentation 4 (Planned 2020-11-27)
+	* generators
+		* generator expressions
+		* generator functions with yield
+			* recursive generators with yield from
+		* speed / size comparison

@@ -9,12 +9,6 @@
 
 * string encoding decoding
 
-* string formatting
-	* append
-	* %
-	* format
-	* f-strings
-
 * '...' dot dot dot syntax
 
 * functional programming
@@ -136,11 +130,11 @@
 # Topics in process of creating presentation for:
 
 ## Presentation 3:
-* generators
-	* generator expressions
-	* generator functions with yield
-		* recursive generators with yield from
-	* speed / size comparison
+* string formatting
+	* string append
+	* %
+	* format
+	* f-strings
 * decorators
 	* manually
 	* simple
@@ -149,8 +143,15 @@
 	* decorators as Classes (have internal state)
 	* decorators as cache / memoization
 
+## Presentation 4:
+* generators
+	* generator expressions
+	* generator functions with yield
+		* recursive generators with yield from
+	* speed / size comparison
 
-# Topics done
+
+# Topics done in presentations before
 
 ## Presentation 1: (Oct 16, 2020)
 * `*args` and `**kwargs`
