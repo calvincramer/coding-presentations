@@ -43,6 +43,9 @@ def concat():
     # TODO print object default / better
     print('before ' + str(var_obj) + ' after')
 
+    # TODO print formatted numbers
+    # No thanks.
+
 
 def percent_format():
     # TODO percent formatting (widely used in python 2.x, considered 'old' way)
@@ -107,6 +110,10 @@ def speed_comparison():
     _percent()      # fastest
     _format()       # this / fastest = 1.85
     _f_string()     # this / fastest = 1.68
+    
+    # TODO explain:
+    # Percent formatting is faster probably because of syntax.
+    #    It does not need to implicitly call a function like format or append
 
 
 print('\n')
