@@ -135,6 +135,7 @@
 	* %
 	* format
 	* f-strings
+	* Template strings
 * decorators
 	* manually
 	* simple

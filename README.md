@@ -26,7 +26,7 @@ This repo holds a list of topics, and materials for presentations about programm
 
 3. Presentation 3 (Planned 2020-11-13)
 	* printing stuff
-		* %, string append, format, f-string
+		* %, string append, format, f-string, Template strings
 	* decorators
 		* manually
 		* simple

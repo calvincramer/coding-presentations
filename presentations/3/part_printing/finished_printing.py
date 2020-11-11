@@ -1,21 +1,5 @@
 #!/usr/bin/python3
 
-class TreeNode():
-    def __init__(self, value, left, right):
-        self._v = value
-        self._l = left
-        self._r = right
-
-    def __str__(self):
-        return 'TreeNode: ' + str(self._v) + ' left: ' + str(self._l) + ' right: ' + str(self._r)
-
-var_num = 42
-var_big_num = 165_643
-var_num_neg = -14
-var_str = 'string'
-var_float = 3.14159265 * 100
-var_obj = TreeNode(value=5, left=None, right=None)
-
 
 def concat():
     # TODO Useful things to know about python strings
@@ -33,45 +17,102 @@ def concat():
     # TODO print string by appending
     try:
         # TODO string append drawbacks
-        print('before ' + var_num + ' after')
+        print('before ' + 20 + ' after')
     except:
         print("Can't concatenate str and non-str")
-    print('before ' + str(var_num) + ' after')
-    print('before ' + var_str + ' after')
-    print('before ' + str(var_float) + ' after')
+    string_var = 'apple'
+    print('before ' + str(20) + ' after')
+    print('before ' + string_var + ' after')
+    print('before ' + str(3.1415) + ' after')
 
     # TODO print object default / better
-    print('before ' + str(var_obj) + ' after')
+    class MyObj:
+        # pass
+        def __str__(self):
+            return 'some value from object'
+    my_obj = MyObj()
+    print('before ' + str(my_obj) + ' after')
 
     # TODO print formatted numbers
     # No thanks.
+    # TODO print width specifiers
+    # No thanks.
+    # TODO use as a template
+    # Not elegantly.
 
 
 def percent_format():
     # TODO percent formatting (widely used in python 2.x, considered 'old' way)
-    print('%s' % var_str)
-    print('%s %s' % (var_str, var_num))     # No need to call str explicitly
+    print('%s' % 'string')
+    print('%s %s' % ('string', 5))     # No need to call str explicitly
 
     # TODO width specifiers
-    print('%10s %s' % (var_str, var_num))
-    print('%-10s %s' % (var_str, var_num))
+    print('%10s %s' % ('string', 5))
+    print('%-10s %s' % ('string', 5))
 
     # TODO numbers
-    print('|%d|%f|' % (var_num, var_float))
-    print('|%8d|%8.2f|' % (var_big_num, var_float))
-    print('|%08d|%08.2f|' % (var_big_num, var_float))
-    print('|d %d|o %o|x %x|e %e|f %f|' % (var_num, var_num, var_num, var_float, var_float))
+    print('|%8d|%8.2f|' % (1234, 3.1415))
+    print('|%08d|%08.2f|' % (1234, 3.1415))
+    print('|d %d|o %o|x %x|e %e|f %f|' % (20, 20, 20, 31415, 31415))
 
     # TODO keywords
-    print('|%(pos)d|%(neg)d|' % {'pos': var_num, 'neg': var_num_neg})
-    print('|%(pos)d|%(neg)d|%(pos)d|' % {'pos': var_num, 'neg': var_num_neg})
+    print('|%(pos)d|%(neg)d|' % {'pos': 5, 'neg': -5})
+    print('|%(pos)d|%(neg)d|%(pos)d|' % {'pos': 5, 'neg': -5})
+
+    # TODO use as template
+    template = '%s %s'
+    print(template % ('Hello', 'world'))
+    print(template % ('Goodbye',  'world'))
 
 
 def string_format():
-    pass
+    # TODO string formatting
+    print('One: {} Two: {}'.format(1, 2))
+    print('One: {1} Two: {0}'.format('apple', 'orange'))   # Reordering by index
+    print('{0} {1} {0}'.format('apple', 'orange'))   # Using more than once
+
+    # TODO width specifiers
+    print('|{:7}|'.format('hey'))
+    print('|{:>7}|'.format('hey'))
+    print('|{:<7}|'.format('hey'))
+    print('|{:^7}|'.format('hey'))
+    
+    # TODO numbers
+    print('|{:8}|{:8.3}|'.format(5, 3.1415))
+    print('|{:08}|{:08.3}|'.format(5, 3.1415))
+    print('0b{0:b} {0:d} 0o{0:o} 0x{0:x}|'.format(20))
+
+    # TODO keywords
+    print('uname: {name} {bits} {smp_up}'.format(name='ala-john-doe', bits='64', smp_up='smp'))
+    description = {
+        'name': 'ala-john-doe', 
+        'bits': '64', 
+        'smp_up': 'smp', 
+        'endianness': 'little',
+    }
+    print('uname: {name} {bits} {smp_up}'.format(**description))
+
+    # TODO use as template
+    template = '{} {}'
+    print(template.format('Hello', 'world'))
+    print(template.format('Goodbye', 'world'))
 
 
 def f_string():
+    # TODO f-strings
+
+    # TODO width specifiers
+
+    # TODO numbers
+
+    # TODO keywords
+
+    # TODO use as template
+    pass
+
+def templates():
+    from string import Template
+    # TODO
     pass
 
 
@@ -121,7 +162,8 @@ concat()
 percent_format()
 string_format()
 f_string()
-speed_comparison()
+templates()
+# speed_comparison()
 print('\n')
 
 
@@ -136,4 +178,10 @@ Maybe things to add
     * string concat when extremely simple formatting, only two operands
     * don't use string concat when need any number formatting
     * use percent formatting if really concerned about speed
+
+* syntax for each
+    * in powerpoint slides show exact syntax
+    * https://docs.python.org/3/library/string.html#format-specification-mini-language
+
+* Template module in string module
 """
