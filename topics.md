@@ -1,5 +1,8 @@
 # Topics to do for Python presentations
 
+* eval() and exec() -> run python code from a string
+	* modifiable code
+
 * number types -> imaginary, Decimal(), Fraction()
 
 * string types:

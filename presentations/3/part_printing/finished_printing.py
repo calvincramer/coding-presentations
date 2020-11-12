@@ -2,6 +2,7 @@
 
 
 def concat():
+    print('\n concat')
     # TODO Useful things to know about python strings
     # TODO characters are just 1-length strings
     assert type("c") is str
@@ -25,23 +26,21 @@ def concat():
     print('before ' + string_var + ' after')
     print('before ' + str(3.1415) + ' after')
 
-    # TODO print object default / better
-    class MyObj:
-        # pass
-        def __str__(self):
-            return 'some value from object'
-    my_obj = MyObj()
-    print('before ' + str(my_obj) + ' after')
-
     # TODO print formatted numbers
     # No thanks.
+
     # TODO print width specifiers
     # No thanks.
+
     # TODO use as a template
-    # Not elegantly.
+    # as a function
+    def concat_template(a, b):
+        return str(a) + str(b)
+    print(concat_template('concatenate me', ' please'))
 
 
 def percent_format():
+    print('\n percent')
     # TODO percent formatting (widely used in python 2.x, considered 'old' way)
     print('%s' % 'string')
     print('%s %s' % ('string', 5))     # No need to call str explicitly
@@ -50,7 +49,7 @@ def percent_format():
     print('%10s %s' % ('string', 5))
     print('%-10s %s' % ('string', 5))
 
-    # TODO numbers
+    # TODO number formatting
     print('|%8d|%8.2f|' % (1234, 3.1415))
     print('|%08d|%08.2f|' % (1234, 3.1415))
     print('|d %d|o %o|x %x|e %e|f %f|' % (20, 20, 20, 31415, 31415))
@@ -60,12 +59,14 @@ def percent_format():
     print('|%(pos)d|%(neg)d|%(pos)d|' % {'pos': 5, 'neg': -5})
 
     # TODO use as template
+    # variable or function
     template = '%s %s'
     print(template % ('Hello', 'world'))
     print(template % ('Goodbye',  'world'))
 
 
 def string_format():
+    print('\n format')
     # TODO string formatting
     print('One: {} Two: {}'.format(1, 2))
     print('One: {1} Two: {0}'.format('apple', 'orange'))   # Reordering by index
@@ -77,7 +78,7 @@ def string_format():
     print('|{:<7}|'.format('hey'))
     print('|{:^7}|'.format('hey'))
     
-    # TODO numbers
+    # TODO number formatting
     print('|{:8}|{:8.3}|'.format(5, 3.1415))
     print('|{:08}|{:08.3}|'.format(5, 3.1415))
     print('0b{0:b} {0:d} 0o{0:o} 0x{0:x}|'.format(20))
@@ -93,68 +94,75 @@ def string_format():
     print('uname: {name} {bits} {smp_up}'.format(**description))
 
     # TODO use as template
+    # variable or function
     template = '{} {}'
     print(template.format('Hello', 'world'))
     print(template.format('Goodbye', 'world'))
 
 
 def f_string():
+    print('\n f-strings')
     # TODO f-strings
+    print(f'I am {2020-1960} years old')
+    age = 50
+    print(f'I am {age} years old')
+    make_younger = lambda x: x * 3 // 4
+    print(f'I am {make_younger(age)} years old')
 
     # TODO width specifiers
+    my_str = 'hey'
+    print(f'|{my_str:7}|')
+    print(f'|{my_str:>7}|')
+    print(f'|{my_str:<7}|')
+    print(f'|{my_str:^7}|')
 
-    # TODO numbers
-
-    # TODO keywords
+    # TODO number formatting
+    num1 = 20
+    num2 = 3.1415
+    print(f'|{num1:8}|{num2:8.3}|')
+    print(f'|{num1:08}|{num2:08.3}|')
+    print(f'0b{num1:b} {num1:d} 0o{num1:o} 0x{num1:x}|')
 
     # TODO use as template
-    pass
+    # not directly, need to use a function
+    def f_string_template(a, b):
+        return f'{a} {b}'
+    print(f_string_template('this is a', 'template'))
+
+    print(f'{"Hello" + str(5)} asdf')
+
 
 def templates():
     from string import Template
-    # TODO
-    pass
+    print()
+    # TODO templates
+    my_template = Template('$number_1 score and ${number_2}years ago')
+    print(my_template.substitute(number_1=4, number_2=7))
+
+    # TODO width specifiers
+    # No support. Need to use percent for string.format
+ 
+    # TODO number formatting
+    # No support. Need to use percent for string.format
 
 
 def speed_comparison():
-    import random
-    import time
-    random.seed()
-    TIMES = 3_000_000
+    from timeit import timeit
+    print('\n speed comparison')
+    times = 7_000_000
+    micro_per_s = 1_000_000
 
-    def _concat():
-        start = time.time()
-        for _ in range(TIMES):
-            string = 'asdf' + str(0xf00dfeed) + str(3.1415)
-        print(f'contact: {time.time() - start:.4f}')
-
-    def _percent():
-        start = time.time()
-        for _ in range(TIMES):
-            string = '%s%d%f' % ('asdf', 0xf00dfeed, 3.1415)
-        print(f'percent: {time.time() - start:.4f}')
-
-    def _format():
-        start = time.time()
-        for _ in range(TIMES):
-            string = '{}{}{}'.format('asdf', 0xf00dfeed, 3.1415)
-        print(f'format: {time.time() - start:.4f}')
-
-    def _f_string():
-        start = time.time()
-        for _ in range(TIMES):
-            string = f"{'asdf'}{0xf00dfeed}{3.1415}"
-        print(f'f-string: {time.time() - start:.4f}')
-
-    # TODO compare results
-    _concat()       # this / fastest = 2.09
-    _percent()      # fastest
-    _format()       # this / fastest = 1.85
-    _f_string()     # this / fastest = 1.68
+    total_to_indiv = lambda total: total * micro_per_s / times 
+    def print_result(name, total):
+        print(f'{name:10}: total: {total:>6.3f}s: each: {total_to_indiv(total):>6.3f}μs')
     
-    # TODO explain:
-    # Percent formatting is faster probably because of syntax.
-    #    It does not need to implicitly call a function like format or append
+    print_result('concat',   timeit("""a = 50; b = 'asdf'; c = str(a) + b""", number=times))
+    print_result('percent',  timeit("""a = 50; b = 'asdf'; c = '%d%s' % (a, b)""", number=times))
+    print_result('format',   timeit("""a = 50; b = 'asdf'; c = '{}{}'.format(a, b)""", number=times))
+    print_result('f-string', timeit("""a = 50; b = 'asdf'; c = f'{a}{b}'""", number=times))
+
+    # TODO template
+    # TODO
 
 
 print('\n')
@@ -163,7 +171,7 @@ percent_format()
 string_format()
 f_string()
 templates()
-# speed_comparison()
+speed_comparison()
 print('\n')
 
 
@@ -183,5 +191,5 @@ Maybe things to add
     * in powerpoint slides show exact syntax
     * https://docs.python.org/3/library/string.html#format-specification-mini-language
 
-* Template module in string module
+* multiline formatting for each method
 """
