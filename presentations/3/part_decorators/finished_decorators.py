@@ -7,6 +7,7 @@ print()
 
 
 # TODO functions are first class objects
+
 # TODO You can pass functions as arugments
 def run(function):
     print(f'I am now going to call {function.__name__}()')
@@ -17,7 +18,9 @@ def say_hi():
 
 run(say_hi)
 
-# TODO You can assign functions as variables
+
+
+# TODO You can assign functions as variables, and call variables that are functions
 def div_3(n):
     return n // 3
 def div_2(n):
@@ -32,7 +35,9 @@ for _ in range(14):
         f = div_3
     num = f(num)
 
-# TODO You can have inner functions (not apart of "first class" definition)
+
+
+# TODO You can have inner functions
 def main_function():
     def is_prime(n):
         if n <= 1:
@@ -40,11 +45,14 @@ def main_function():
         elif n == 2: 
             return True
         return all(n % d != 0 for d in range(2, int(n ** 0.5) + 1))
-    for num in range(0, 50):
+
+    for num in range(50):
         if is_prime(num):
             print(num)
 
 main_function()
+
+
 
 # TODO You can return functions from functions
 def choose(num):
@@ -58,6 +66,23 @@ f = choose(10)
 f()
 choose(11)()
 
+
+
+# TODO closures and inner functions
+def closure(name):
+    local_var = name.upper()
+    def inner():
+        nonlocal local_var
+        local_var = local_var * 2
+        return local_var
+    return inner
+
+ret_f = closure('carl')
+print(ret_f())
+print(ret_f())
+
+
+
 # TODO later maybe? Partial application of function and currying
 
 
@@ -67,10 +92,16 @@ choose(11)()
 
 
 
-
+# TODO what is a decorator?
+"""
+The decorator design pattern allows behavior to be added to 
+an individual object, dynamically, without affecting the 
+behavior of other objects from the same class
+"""
 
 
 # TODO decorator functionality manually
+
 # TODO function, decorate outside function when called
 def do_something(a, b):
     print(f'do_something(): {a} + {b} = ', end='')
@@ -78,12 +109,13 @@ def do_something(a, b):
     print(a + b)
     return a + b
 
-
 start = time.time()
 print(f'returned: {do_something(1, 2)}')
 print(f'Took {time.time() - start:.3f}s')
 
-# TODO compose function
+
+
+# TODO wrap functionality around existing function
 def timer(func):
     def inner(*args, **kwargs):
         # print('Before')
@@ -99,7 +131,9 @@ print()
 do_something_better = timer(do_something)
 do_something_better(1, 2)
 
-# TODO compose function again
+
+
+# TODO compose function again, because why not
 def counter(func):
     _count = 0
     def inner(*args, **kwargs):
@@ -118,9 +152,6 @@ do_something_even_better(5, 6)
 
 
 
-
-
-
 # TODO use decorator syntactical sugar
 def print_after(func):
     def inner(*args, **kwargs):
@@ -132,40 +163,26 @@ def print_after(func):
 @print_after
 @counter
 @timer
-def do_something2(a, b):
-    print(f'do_something2(): {a} - {b} = ', end='')
+def does_elegantly(a, b):
+    print(f'does_elegantly(): {a} - {b} = ', end='')
     time.sleep(1/2)
     print(a - b)
     return a - b
 
-do_something2(1, 2)
-do_something2(3, 4)
-
-
-
-
-
-
-
-
+does_elegantly(1, 2)
+does_elegantly(3, 4)
 
 
 
 # TODO multiple decorators equivalent syntax and ordering
-def do_something3(a, b):
-    print(f'do_something3(): {a} - {b} = ', end='')
+def does_elegantly_copy(a, b):
+    print(f'does_elegantly_copy(): {a} - {b} = ', end='')
     time.sleep(1/2)
     print(a - b)
     return a - b
-
-f = print_after(counter(timer(do_something3)))
+f = print_after(counter(timer(does_elegantly_copy)))
 f(1, 2)
 f(3, 4)
-
-
-
-
-
 
 
 
@@ -186,39 +203,15 @@ def obfuscate(func):
     return inner
 
 class Person:
-
     def __init__(self, age):
         self._age = max(0, age)
     
     @obfuscate
     def get_age(self):
         return self._age
-
-    def check_age_arg(func):
-        def inner(*args, **kwargs):
-            if kwargs['age'] < 0:
-                raise ValueError('age needs to be positive')
-            return func(*args, **kwargs)
-        return inner
-    
-    def flip_age(func):
-        def inner(self, *args, **kwargs):
-            ret = func(self, *args, **kwargs)
-            self._age *= -1
-            return ret
-        return inner
-    
-    @flip_age
-    # @check_age_arg
-    def set_age(self, *, age):
-        self._age = age
-
     
 jeff = Person(age=20)
 print(f"Jeff's age: {jeff.get_age()}")
-jeff.set_age(age=-100)
-print(f"Jeff's age: {jeff.get_age()}")
-
 
 
 
