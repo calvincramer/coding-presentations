@@ -2,7 +2,7 @@
 
 
 def concat():
-    print('\n concat')
+    print(' concat')
     # TODO Useful things to know about python strings
     # TODO characters are just 1-length strings
     assert type("c") is str
@@ -134,7 +134,7 @@ def f_string():
 
 def templates():
     from string import Template
-    print()
+    print('\n Template')
     # TODO templates
     my_template = Template('$number_1 score and ${number_2}years ago')
     print(my_template.substitute(number_1=4, number_2=7))
@@ -149,20 +149,20 @@ def templates():
 def speed_comparison():
     from timeit import timeit
     print('\n speed comparison')
-    times = 7_000_000
+    # TODO compare concat, %, string format, f-string, template speeds
+    times = 5_000_000
     micro_per_s = 1_000_000
 
     total_to_indiv = lambda total: total * micro_per_s / times 
     def print_result(name, total):
         print(f'{name:10}: total: {total:>6.3f}s: each: {total_to_indiv(total):>6.3f}μs')
     
-    print_result('concat',   timeit("""a = 50; b = 'asdf'; c = str(a) + b""", number=times))
-    print_result('percent',  timeit("""a = 50; b = 'asdf'; c = '%d%s' % (a, b)""", number=times))
-    print_result('format',   timeit("""a = 50; b = 'asdf'; c = '{}{}'.format(a, b)""", number=times))
-    print_result('f-string', timeit("""a = 50; b = 'asdf'; c = f'{a}{b}'""", number=times))
-
-    # TODO template
-    # TODO
+    setup = "from string import Template; a = 50; b='asdf'; t = Template('$a$b')"
+    print_result('concat',   timeit("""str(a) + b""", setup, number=times))
+    print_result('percent',  timeit("""'%d%s' % (a, b)""", setup, number=times))
+    print_result('format',   timeit("""'{}{}'.format(a, b)""", setup, number=times))
+    print_result('f-string', timeit("""f'{a}{b}'""", setup, number=times))
+    print_result('f-string', timeit("""t.substitute(a=a, b=b)""", setup, number=times))
 
 
 print('\n')
@@ -173,23 +173,3 @@ f_string()
 templates()
 speed_comparison()
 print('\n')
-
-
-
-
-"""
-Maybe things to add
-
-* string multiplication -> my_str * 5
-
-* ranking of when to use each
-    * string concat when extremely simple formatting, only two operands
-    * don't use string concat when need any number formatting
-    * use percent formatting if really concerned about speed
-
-* syntax for each
-    * in powerpoint slides show exact syntax
-    * https://docs.python.org/3/library/string.html#format-specification-mini-language
-
-* multiline formatting for each method
-"""
