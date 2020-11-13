@@ -77,7 +77,7 @@ def string_format():
     print('|{:>7}|'.format('hey'))
     print('|{:<7}|'.format('hey'))
     print('|{:^7}|'.format('hey'))
-    
+
     # TODO number formatting
     print('|{:8}|{:8.3}|'.format(5, 3.1415))
     print('|{:08}|{:08.3}|'.format(5, 3.1415))
@@ -86,9 +86,9 @@ def string_format():
     # TODO keywords
     print('uname: {name} {bits} {smp_up}'.format(name='ala-john-doe', bits='64', smp_up='smp'))
     description = {
-        'name': 'ala-john-doe', 
-        'bits': '64', 
-        'smp_up': 'smp', 
+        'name': 'ala-john-doe',
+        'bits': '64',
+        'smp_up': 'smp',
         'endianness': 'little',
     }
     print('uname: {name} {bits} {smp_up}'.format(**description))
@@ -141,7 +141,7 @@ def templates():
 
     # TODO width specifiers
     # No support. Need to use percent for string.format
- 
+
     # TODO number formatting
     # No support. Need to use percent for string.format
 
@@ -153,10 +153,10 @@ def speed_comparison():
     times = 5_000_000
     micro_per_s = 1_000_000
 
-    total_to_indiv = lambda total: total * micro_per_s / times 
+    total_to_indiv = lambda total: total * micro_per_s / times
     def print_result(name, total):
         print(f'{name:10}: total: {total:>6.3f}s: each: {total_to_indiv(total):>6.3f}μs')
-    
+
     setup = "from string import Template; a = 50; b='asdf'; t = Template('$a$b')"
     print_result('concat',   timeit("""str(a) + b""", setup, number=times))
     print_result('percent',  timeit("""'%d%s' % (a, b)""", setup, number=times))

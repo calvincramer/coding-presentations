@@ -22,9 +22,7 @@ This repo holds a list of topics, and materials for presentations about programm
 		* data class -> easier init functions (kind of like namedtuple)
 			* immutable data class
 
-## Planned
-
-3. Presentation 3 (Planned 2020-11-13)
+3. Presentation 3 (2020-11-13)
 	* printing stuff
 		* %, string append, format, f-string, Template strings
 	* decorators
@@ -35,6 +33,7 @@ This repo holds a list of topics, and materials for presentations about programm
 		* decorators as Classes (have internal state)
 		* decorators as cache / memoization
 
+## Planned
 
 4. Presentation 4 (Planned 2020-11-27)
 	* generators
@@ -42,3 +41,4 @@ This repo holds a list of topics, and materials for presentations about programm
 		* generator functions with yield
 			* recursive generators with yield from
 		* speed / size comparison
+	* need one more topic!

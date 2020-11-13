@@ -43,8 +43,8 @@ print()
 
 # TODO what is a decorator?
 """
-The decorator design pattern allows behavior to be added to 
-an individual object, dynamically, without affecting the 
+The decorator design pattern allows behavior to be added to
+an individual object (or function), dynamically, without affecting the
 behavior of other objects from the same class
 """
 
@@ -52,16 +52,13 @@ behavior of other objects from the same class
 # TODO decorator functionality manually
 
 # TODO function, decorate outside function when called
-def do_something(a, b):
-    print(f'do_something(): {a} + {b} = ', end='')
-    time.sleep(1/2)
-    print(a + b)
-    return a + b
-
-
 
 
 # TODO wrap functionality around existing function
+
+
+# TODO Implement kind-of decorator by passing function and arguments at same time
+
 
 
 
@@ -80,10 +77,12 @@ def do_something(a, b):
 
 
 
-
 # TODO decorate class methods
 
 
+
+# TODO can also apply decorators to class itself
+# no example...
 
 
 
@@ -92,14 +91,6 @@ def do_something(a, b):
 
 
 # TODO decorator with arguments
-
-# def print_n(n):
-#     print(n)
-
-# for n in range(50):
-#     print_n(n)
- 
-
 
 
 
@@ -113,6 +104,15 @@ def do_something(a, b):
 # TODO example decorator as cache / memoization
 
 
+
+def sqrt(a: float) -> float:
+    print(f'computing sqrt({a}) first time (very slow)')
+    time.sleep(1/2)
+    return a ** 0.5
+
+print(f'sqrt(5) = {sqrt(5)}\n')
+print(f'sqrt(5) = {sqrt(5)}\n')
+print(f'sqrt(5) = {sqrt(5)}\n')
 
 
 

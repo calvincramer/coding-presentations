@@ -132,27 +132,13 @@
 
 # Topics in process of creating presentation for:
 
-## Presentation 3:
-* string formatting
-	* string append
-	* %
-	* format
-	* f-strings
-	* Template strings
-* decorators
-	* manually
-	* simple
-	* with decorator arguments
-	* with function arguments
-	* decorators as Classes (have internal state)
-	* decorators as cache / memoization
-
 ## Presentation 4:
 * generators
 	* generator expressions
 	* generator functions with yield
 		* recursive generators with yield from
 	* speed / size comparison
+* need something else
 
 
 # Topics done in presentations before
@@ -174,3 +160,18 @@
 	* interfaces through stateless abstract base classes and multiple inheritance
 	* data class -> easier init functions (kind of like namedtuple)
 		* immutable data class
+
+## Presentation 3:
+* string formatting
+	* string append
+	* %
+	* format
+	* f-strings
+	* Template strings
+* decorators
+	* manually
+	* simple
+	* with decorator arguments
+	* with function arguments
+	* decorators as Classes (have internal state)
+	* decorators as cache / memoization

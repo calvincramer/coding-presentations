@@ -42,7 +42,7 @@ def main_function():
     def is_prime(n):
         if n <= 1:
             return False
-        elif n == 2: 
+        elif n == 2:
             return True
         return all(n % d != 0 for d in range(2, int(n ** 0.5) + 1))
 
@@ -94,8 +94,8 @@ print(ret_f())
 
 # TODO what is a decorator?
 """
-The decorator design pattern allows behavior to be added to 
-an individual object, dynamically, without affecting the 
+The decorator design pattern allows behavior to be added to
+an individual object (or function), dynamically, without affecting the
 behavior of other objects from the same class
 """
 
@@ -130,6 +130,17 @@ def timer(func):
 print()
 do_something_better = timer(do_something)
 do_something_better(1, 2)
+
+
+# TODO Implement kind-of decorator by passing function and arguments at same time
+def timer2(func, *args, **kwargs):
+    start = time.time()
+    ret = func(*args, **kwargs)
+    elapsed = time.time() - start
+    print(f'Timer took {elapsed:.2f}s')
+    return ret
+timer2(do_something, 7, 8)
+
 
 
 
@@ -205,16 +216,17 @@ def obfuscate(func):
 class Person:
     def __init__(self, age):
         self._age = max(0, age)
-    
+
     @obfuscate
     def get_age(self):
         return self._age
-    
+
 jeff = Person(age=20)
 print(f"Jeff's age: {jeff.get_age()}")
 
 
-
+# TODO can also apply decorators to class itself
+# no example...
 
 
 
@@ -244,7 +256,7 @@ def print_n(n):
 
 for n in range(50):
     print_n(n)
- 
+
 
 
 
@@ -289,8 +301,6 @@ def sqrt(a: float) -> float:
 print(f'sqrt(5) = {sqrt(5)}\n')
 print(f'sqrt(5) = {sqrt(5)}\n')
 print(f'sqrt(5) = {sqrt(5)}\n')
-
-
 
 
 

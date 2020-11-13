@@ -36,7 +36,7 @@ def string_format():
     # TODO string formatting
 
     # TODO width specifiers
-    
+
     # TODO number formatting
 
     # TODO keywords
@@ -61,7 +61,7 @@ def templates():
     # TODO templates
 
     # TODO width specifiers
- 
+
     # TODO number formatting
 
 
