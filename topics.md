@@ -23,6 +23,7 @@
 	* partial application of functions
 		* `from functools import partial`
 	* currying -> `f(1)(2)(3)`
+	* last statement in function implicit return
 
 * walrus operator
 
@@ -134,10 +135,12 @@
 
 ## Presentation 4:
 * generators
+	* last vs. non-lazy computation
 	* generator expressions
 	* generator functions with yield
 		* recursive generators with yield from
 	* speed / size comparison
+	* infinite data structures with generators
 * need something else
 
 

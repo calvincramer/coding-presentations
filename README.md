@@ -41,8 +41,10 @@ Recordings located [here](https://windriversystems.sharepoint.com/sites/Vx/Sites
 
 4. Presentation 4 (Planned 2020-11-27)
 	* generators
+		* last vs. non-lazy computation
 		* generator expressions
 		* generator functions with yield
 			* recursive generators with yield from
 		* speed / size comparison
-	* need one more topic!
+		* infinite data structures with generators
+	* need something else
