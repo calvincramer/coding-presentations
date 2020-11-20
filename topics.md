@@ -129,6 +129,7 @@
 	* bloom filter
 	* python `async`, `await`, `async with`, `async for ... in ...`
 
+* pyenv - separate package environments
 
 
 # Topics in process of creating presentation for:
