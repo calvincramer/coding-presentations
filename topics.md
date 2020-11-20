@@ -130,7 +130,7 @@
 	* python `async`, `await`, `async with`, `async for ... in ...`
 
 * pyenv - separate package environments
-
+	* http://bitbucket.wrs.com/projects/CT/repos/jivetwiki/browse/README-setup-pyenv.md
 
 # Topics in process of creating presentation for:
 
