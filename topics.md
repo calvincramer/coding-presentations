@@ -1,5 +1,8 @@
 # Topics to do for Python presentations
 
+* pygdb gdb for python
+	* debugging python not in ide
+
 * eval() and exec() -> run python code from a string
 	* modifiable code
 
@@ -96,6 +99,7 @@
 	* nltk
 	* sqlite3
 	* redis
+
 * FASTER python
 	* `perf_counter()`
 	* timeit module
